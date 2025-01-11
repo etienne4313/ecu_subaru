@@ -22,9 +22,9 @@ static void injector_test(int inj)
 	io_relay_on();
 	while(x<100){
 		io_open_injector(inj);
-		_delay_ms(10);
+		DELAY_MSEC(10);
 		io_close_injector(inj, 0);
-		_delay_ms(10);
+		DELAY_MSEC(10);
 		x++;
 	}
 	io_relay_off();
@@ -39,9 +39,9 @@ static void coil_test(int cyl)
 
 	while(x<100){
 		io_open_coil(cyl, 0);
-		_delay_ms(4); // DWELL TIME
+		DELAY_MSEC(4); // DWELL TIME
 		io_close_coil(cyl, 0);
-		_delay_ms(10);
+		DELAY_MSEC(10);
 		x++;
 	}
 	io_relay_off();
@@ -54,13 +54,13 @@ static void relay_test(void)
 	FORCE_PRINT( "Relay toggle\n");
 	while(x<3){
 		io_relay_on();
-		_delay_ms(1000);
+		DELAY_MSEC(1000);
 		gaz_relay_on();
-		_delay_ms(1000);
+		DELAY_MSEC(1000);
 		io_relay_off();
-		_delay_ms(1000);
+		DELAY_MSEC(1000);
 		gaz_relay_off();
-		_delay_ms(1000);
+		DELAY_MSEC(1000);
 		x++;
 	}
 	io_relay_off();
@@ -72,21 +72,21 @@ static void full_sequence(void)
 
 	relay_test();
 	injector_test(1);
-	_delay_ms(1000);
+	DELAY_MSEC(1000);
 	injector_test(2);
-	_delay_ms(1000);
+	DELAY_MSEC(1000);
 	injector_test(3);
-	_delay_ms(1000);
+	DELAY_MSEC(1000);
 	injector_test(4);
-	_delay_ms(1000);
+	DELAY_MSEC(1000);
 	coil_test(1);
-	_delay_ms(1000);
+	DELAY_MSEC(1000);
 	coil_test(2);
-	_delay_ms(1000);
+	DELAY_MSEC(1000);
 	coil_test(3);
-	_delay_ms(1000);
+	DELAY_MSEC(1000);
 	coil_test(4);
-	_delay_ms(1000);
+	DELAY_MSEC(1000);
 }
 
 void unit_test(void)

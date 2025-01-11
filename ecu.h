@@ -142,14 +142,8 @@ enum error_condition{
 #define DEBUG(fmt, args...) do {\
 } while(0)
 
-#if 1
 #undef PRINT
 #define PRINT(fmt, args...) do {\
-} while(0)
-#endif
-
-#define FORCE_PRINT(fmt, args...) do {\
-	fprintf(stderr, fmt, ## args); \
 } while(0)
 
 /******************************************************************************/

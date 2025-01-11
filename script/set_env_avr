@@ -1,13 +1,13 @@
 #
-# Select ARCH and CPU type
-#   ARCH: avr
+# Select PLATFORM and CPU type
+#   PLATFORM: avr
 #   CPU: mega328 OR mega2560 OR mega328_nano
 #
-ARCH=avr
+PLATFORM=avr
 #CPU=mega2560
 #CPU=mega328
 CPU=mega328_nano
-export ARCH
+export PLATFORM
 export CPU
 export UCOS_II=$PWD/../../
 export KDIR=$UCOS_II/Ports/AVR/Generic/gcc/

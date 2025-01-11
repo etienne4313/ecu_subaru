@@ -100,7 +100,7 @@ static void user_cmd(int *timing_advance, int *fuel_msec)
 		for(y=0; y<4; y++){
 			io_open_injector(y+1);
 			for(x=0; x<PRIME_FUEL; x++)
-				_delay_ms(1);
+				DELAY_MSEC(1);
 			io_close_injector(y+1, 0);
 		}
 		PRINT("Prime injector done\n");
@@ -168,7 +168,7 @@ void osdie(int err, int line)
 	OS_CPU_SR cpu_sr;
 
 	OS_ENTER_CRITICAL();
-#if _BUG_328_NANO_
+#ifdef _BUG_328_NANO_
 	/* 
 	 * Clone 328 Nano bootloader doesn't clear the WD when coming up and keeps reloading evey 16msec
 	 * Here we are branching back to RESET vector directly.
@@ -190,7 +190,7 @@ void osdie(int err, int line)
 	}
 	__asm__ __volatile__ (  "jmp __ctors_end \n\t" );
 #endif
-	fprintf(stderr, "DIE %d : %d\n", err, line); 
+	FORCE_PRINT("DIE %d : %d\n", err, line); 
 	close_all_io();
 	/* Wait for WD to reset */
 	while(1){};
