@@ -1,4 +1,7 @@
 PWD := $(shell pwd)
+UCOS_II=$(PWD)/../../
+include .config
+
 PROG := $(PWD)/$(shell basename `pwd`)
 
 #
@@ -13,8 +16,7 @@ INCLUDE = $(PWD)
 common_objects := $(patsubst %.c,../../../../../../../../../%.o,$(wildcard $(PWD)/*.c)) $(patsubst %.c,../../../../../../../../../%.o,$(wildcard $(PWD)/driver/$(DRIVER).c)) $(patsubst %.c,../../../../../../../../../%.o,$(wildcard $(PWD)/arch/$(PLATFORM)/*.c))
 #common_objects := $(patsubst %.c,%.o,$(wildcard $(PWD)/*.c)) $(patsubst %.c,%.o,$(wildcard $(PWD)/driver/$(DRIVER).c)) $(patsubst %.c,%.o,$(wildcard $(PWD)/arch/$(PLATFORM)/*.c))
 
-
-export PWD PROG INCLUDE common_objects
+export PWD PROG INCLUDE common_objects UCOS_II KDIR CPU
 
 all:
 	$(MAKE) -C $(KDIR)
@@ -29,6 +31,7 @@ mrproper:
 	find . -name ".*.cmd" -type f -print0 | xargs -0 /bin/rm -f
 	find . -name "*.ko" -type f -print0 | xargs -0 /bin/rm -f
 	find . -name "*.o" -type f -print0 | xargs -0 /bin/rm -f
+	rm -f .config
 
 flash:
 	$(MAKE) -C $(KDIR) flash

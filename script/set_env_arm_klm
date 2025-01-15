@@ -1,5 +1,0 @@
-PLATFORM=arm
-export PLATFORM
-export UCOS_II=$PWD/../../
-export KDIR=$UCOS_II/Ports/RaspberryPI/klm/gcc/
-
